@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include "User.h"
+#include "Message.h"
+using namespace std;
+
+
+int main(){
+	fstream user_file = fstream("users.txt", ios::in | ios::out);
+	//fstream message_file = fstream("message.txt", ios::in | ios::out);
+	if (!user_file)
+		
+		user_file = fstream("users.txt", ios::in | ios::out | ios::trunc);
+
+	if (user_file) {
+		User user("Artem", "Art", "qwerty");
+		user_file << user;
+
+		user_file.seekg(0, ios_base::beg);
+		user_file >> user;
+		cout << user << endl;
+	}
+	else
+
+		cout << "Could not open file!" << endl;
+		
+return 0;
+}
